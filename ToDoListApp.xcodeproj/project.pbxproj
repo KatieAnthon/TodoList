@@ -14,6 +14,7 @@
 		E6A11E4C2B7BCECC00A9604F /* ToDoListAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A11E4B2B7BCECC00A9604F /* ToDoListAppTests.swift */; };
 		E6A11E562B7BCECC00A9604F /* ToDoListAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A11E552B7BCECC00A9604F /* ToDoListAppUITests.swift */; };
 		E6A11E582B7BCECC00A9604F /* ToDoListAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A11E572B7BCECC00A9604F /* ToDoListAppUITestsLaunchTests.swift */; };
+		E6A3B5E02B7CE0D6002251EA /* NameDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A3B5DF2B7CE0D6002251EA /* NameDisplayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		E6A11E512B7BCECC00A9604F /* ToDoListAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoListAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6A11E552B7BCECC00A9604F /* ToDoListAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListAppUITests.swift; sourceTree = "<group>"; };
 		E6A11E572B7BCECC00A9604F /* ToDoListAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E6A3B5DF2B7CE0D6002251EA /* NameDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameDisplayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				E6A11E3A2B7BCEC900A9604F /* ToDoListAppApp.swift */,
 				E6A11E3C2B7BCEC900A9604F /* ContentView.swift */,
+				E6A3B5DF2B7CE0D6002251EA /* NameDisplayView.swift */,
 				E6A11E3E2B7BCECC00A9604F /* Assets.xcassets */,
 				E6A11E402B7BCECC00A9604F /* Preview Content */,
 			);
@@ -258,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6A11E3D2B7BCEC900A9604F /* ContentView.swift in Sources */,
+				E6A3B5E02B7CE0D6002251EA /* NameDisplayView.swift in Sources */,
 				E6A11E3B2B7BCEC900A9604F /* ToDoListAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

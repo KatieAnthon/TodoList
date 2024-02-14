@@ -8,21 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var timesBeingTapped = 0
     @State private var newTask = ""
-    @State var tasks: [String] = []
+    @State private var tasks = [String]()
     @State var taskDone: [Bool] = []
     
     var body: some View {
         NavigationView {
-            Form {
+            List {
                 Section(header: Text("Add New Task")) {
                     TextField("Add your task", text: $newTask)
                     Button("Add Task") {
+                        guard !newTask.isEmpty else {return}
                         tasks.append(newTask)
                         taskDone.append(false)
                         newTask = ""
-                    
+                        
                     }
                 }
                 
@@ -39,22 +39,33 @@ struct ContentView: View {
                         Text("Toggle them all off!")
                             .fontWeight(.light)
                             .font(.system(size: 15))
-                        
-                       
                     }
+                    
+                    
                     ForEach(tasks.indices, id: \.self) { index in
-                        Toggle(tasks[index], isOn: $taskDone[index])
+                        NavigationLink(destination: NameDisplayView(newTask: tasks[index])) {
+                            //Toggle(tasks[index], isOn: $taskDone[index])
+                            HStack {
+                                Text(tasks[index])
+                                Spacer()
+                                Toggle("", isOn: $taskDone[index])
+                                    .labelsHidden()
+                            }
+                            
+                        }
+                        
+                        
+                        
                     }
-                    
-                    
-                    
                 }
+                .navigationBarTitle("Task Names")
+                .padding()
             }
-            .padding()
         }
     }
+    
 }
 
-#Preview {
+#Preview{
     ContentView()
 }
