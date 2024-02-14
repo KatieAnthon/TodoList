@@ -9,11 +9,33 @@ import Foundation
 import SwiftUI
 
 
-    struct NameDisplayView: View {
-        var newTask: String
+struct NameDisplayView: View {
+    var newTask: String
+    var tasksDescription: String
     
-        var body: some View {
+    var body: some View {
+        VStack{
             Text("Your Task \(newTask)")
-                .navigationTitle("Task")
+                .font(.title)
+                .padding()
+                
+            
+            Text("\(tasksDescription)")
+                .font(.body)
+                .padding()
+            
+            Spacer()
+            
+            Button(action: {
+                            // Add your edit action here
+                        }) {
+                            Text("Edit")
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                        }
         }
+        .navigationTitle("Task Details")
     }
+}

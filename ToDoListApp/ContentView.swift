@@ -7,10 +7,17 @@
 
 import SwiftUI
 
+
+struct TodoItem: Identifiable {
+    let id = UUID()
+    var task: String
+    var description: String
+    var taskCompleted: Bool
+}
+
 struct ContentView: View {
     @State private var newTask = ""
-    @State private var tasks = [String]()
-    @State var taskDone: [Bool] = []
+    @State private var todoItems = [TodoItem]()
     
     var body: some View {
         NavigationView {
@@ -19,8 +26,8 @@ struct ContentView: View {
                     TextField("Add your task", text: $newTask)
                     Button("Add Task") {
                         guard !newTask.isEmpty else {return}
-                        tasks.append(newTask)
-                        taskDone.append(false)
+                        let newItem = TodoItem(task: newTask, description: "", taskCompleted: false)
+                        todoItems.append(newItem)
                         newTask = ""
                         
                     }
@@ -41,21 +48,18 @@ struct ContentView: View {
                             .font(.system(size: 15))
                     }
                     
-                    
-                    ForEach(tasks.indices, id: \.self) { index in
-                        NavigationLink(destination: NameDisplayView(newTask: tasks[index])) {
-                            //Toggle(tasks[index], isOn: $taskDone[index])
-                            HStack {
-                                Text(tasks[index])
-                                Spacer()
-                                Toggle("", isOn: $taskDone[index])
-                                    .labelsHidden()
+                }
+                    Section(header: Text("To-Do List")) {
+                        ForEach(todoItems.indices, id: \.self) { index in
+                            NavigationLink(destination: NameDisplayView(newTask: todoItems[index].task, tasksDescription: todoItems[index].description)) {
+                                HStack {
+                                    Text(todoItems[index].task)
+                                    Spacer()
+                                    Toggle("", isOn: $todoItems[index].taskCompleted)
+                                        .labelsHidden()
+                                }
                             }
-                            
                         }
-                        
-                        
-                        
                     }
                 }
                 .navigationBarTitle("Task Names")
@@ -64,8 +68,8 @@ struct ContentView: View {
         }
     }
     
-}
+    #Preview{
+        ContentView()
+    }
+    
 
-#Preview{
-    ContentView()
-}
