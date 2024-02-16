@@ -11,7 +11,7 @@ import SwiftUI
 
 struct NameDisplayView: View {
     var newTask: String
-    var tasksDescription: String
+    @Binding var tasksDescription: String
     
     var body: some View {
         VStack{
@@ -20,9 +20,10 @@ struct NameDisplayView: View {
                 .padding()
                 
             
-            Text("\(tasksDescription)")
-                .font(.body)
-                .padding()
+            TextField("Description", text: $tasksDescription)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .font(.body)
+                        .padding()
             
             Spacer()
             

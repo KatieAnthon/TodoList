@@ -17,7 +17,7 @@ struct TodoItem: Identifiable {
 
 struct ContentView: View {
     @State private var newTask = ""
-    @State private var todoItems = [TodoItem]()
+    @State private var todoItems: [TodoItem] = []
     
     var body: some View {
         NavigationView {
@@ -26,7 +26,7 @@ struct ContentView: View {
                     TextField("Add your task", text: $newTask)
                     Button("Add Task") {
                         guard !newTask.isEmpty else {return}
-                        let newItem = TodoItem(task: newTask, description: "", taskCompleted: false)
+                        let newItem = TodoItem(task: newTask, description: "write description", taskCompleted: false)
                         todoItems.append(newItem)
                         newTask = ""
                         
@@ -51,7 +51,7 @@ struct ContentView: View {
                 }
                     Section(header: Text("To-Do List")) {
                         ForEach(todoItems.indices, id: \.self) { index in
-                            NavigationLink(destination: NameDisplayView(newTask: todoItems[index].task, tasksDescription: todoItems[index].description)) {
+                            NavigationLink(destination: NameDisplayView(newTask: todoItems[index].task, tasksDescription: self.binding(for: todoItems[index]))) {
                                 HStack {
                                     Text(todoItems[index].task)
                                     Spacer()
@@ -66,6 +66,14 @@ struct ContentView: View {
                 .padding()
             }
         }
+    
+    private func binding(for item: TodoItem) -> Binding<String> {
+        guard let index = self.todoItems.firstIndex(where: { $0.id == item.id }) else {
+            fatalError("Can't find item in array")
+        }
+        return $todoItems[index].description
+    }
+        
     }
     
     #Preview{
